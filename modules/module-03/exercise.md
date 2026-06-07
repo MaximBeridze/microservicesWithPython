@@ -91,9 +91,7 @@ Test the full flow through the gateway:
 
 ```bash
 # Create a user first, then log an activity for that user
-curl -X POST http://localhost:8000/v1/activities \
-  -H "Content-Type: application/json" \
-  -d '{"user_id": "<your-user-id>", "game_id": "<your-game-id>", "action": "played"}'
+curl -X POST http://localhost:8000/v1/activities -H "Content-Type: application/json" -d '{"user_id": "<your-user-id>", "game_id": "<your-game-id>", "action": "played"}'
 ```
 
 Check that the response includes the enriched `game` object. Then stop `game-service` and repeat — confirm the activity is still saved with `"game": null`.
@@ -110,10 +108,10 @@ Check that the response includes the enriched `game` object. Then stop `game-ser
 
 ## Minimum to submit this branch
 
-- [ ] `activity-service` validates users and enriches with game data
-- [ ] Graceful degradation works: activity saved even when `game-service` is down
-- [ ] Gateway running on port 8000, routing to all three services
-- [ ] `curl http://localhost:8000/health` returns `{"status": "ok"}`
+- [x] `activity-service` validates users and enriches with game data
+- [x] Graceful degradation works: activity saved even when `game-service` is down
+- [x] Gateway running on port 8000, routing to all three services
+- [x] `curl http://localhost:8000/health` returns `{"status": "ok"}`
 - [ ] `REFLECTION.md` completed and committed
 
 ---
