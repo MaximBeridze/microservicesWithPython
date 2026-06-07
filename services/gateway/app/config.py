@@ -17,8 +17,7 @@ class Settings(BaseSettings):
     # auth_service_url: str = "http://localhost:8005"
     # secret_key: str = "dev-secret-change-in-production"
 
-    class Config:
-        env_file = ".env"
+    model_config = {"env_file": ".env"}
 
 
 settings = Settings()

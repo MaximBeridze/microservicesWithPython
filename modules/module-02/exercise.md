@@ -91,7 +91,7 @@ Run it on port 8002:
 cd services/game-service
 cp .env.example .env
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+.venv\Scripts\activate
 pip install -r requirements.txt
 alembic upgrade head
 uvicorn app.main:app --reload --port 8002
@@ -127,9 +127,9 @@ Also confirm `aiosqlite` is in your `requirements.txt` — the CI test runner us
 
 ## Minimum to submit this branch
 
-- [ ] `game-service` running on port 8002 with all 4 endpoints working
-- [ ] Alembic migration for the `games` table committed
-- [ ] At least one test passing in `game-service/tests/`
-- [ ] `REFLECTION.md` completed and committed
+- [x] `game-service` running on port 8002 with all 4 endpoints working
+- [x] Alembic migration for the `games` table committed
+- [x] At least one test passing in `game-service/tests/`
+- [x] `REFLECTION.md` completed and committed
 
 If you run out of time: the search endpoint is optional. The other three are not.
