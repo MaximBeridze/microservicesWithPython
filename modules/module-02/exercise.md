@@ -127,8 +127,8 @@ Also confirm `aiosqlite` is in your `requirements.txt` — the CI test runner us
 
 ## Minimum to submit this branch
 
-- [ ] `game-service` running on port 8002 with all 4 endpoints working
-- [ ] Alembic migration for the `games` table committed
+- [x] `game-service` running on port 8002 with all 4 endpoints working
+- [x] Alembic migration for the `games` table committed
 - [ ] At least one test passing in `game-service/tests/`
 - [ ] `REFLECTION.md` completed and committed
 
