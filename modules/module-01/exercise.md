@@ -26,11 +26,7 @@ A bounded context is a part of the system that has a clear responsibility and ow
 
 For each bounded context you identify, fill in the table:
 
-| Bounded Context | Responsibilities                                         | Owned Entities | Team        |
-| --------------- | -------------------------------------------------------- | -------------- | ----------- |
-| Identity        | Manages who users are, handles registration and profiles | User, Session  | Platform    |
-| Game Library    | _(fill in)_                                              | _(fill in)_    | _(fill in)_ |
-| _(add more)_    |                                                          |                |             |
+Word Document in ../Answers/"Module 1"
 
 There is no single correct answer: what matters is that you can justify each row.
 
@@ -85,9 +81,9 @@ You do not need to write these answers down — they are warm-up for your REFLEC
 
 ## Minimum to submit this branch
 
-- [ ] Bounded context table filled in (at least 4 services justified)
-- [ ] At least 3 service contracts defined
-- [ ] Service map committed (sketch, photo, or ASCII)
+- [x ] Bounded context table filled in (at least 4 services justified)
+- [x ] At least 3 service contracts defined
+- [x ] Service map committed (sketch, photo, or ASCII)
 - [ ] `REFLECTION.md` completed and committed
 
 The map does not need to be perfect. It needs to be yours.
