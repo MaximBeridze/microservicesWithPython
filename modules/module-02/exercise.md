@@ -130,6 +130,6 @@ Also confirm `aiosqlite` is in your `requirements.txt` — the CI test runner us
 - [x] `game-service` running on port 8002 with all 4 endpoints working
 - [x] Alembic migration for the `games` table committed
 - [x] At least one test passing in `game-service/tests/`
-- [ ] `REFLECTION.md` completed and committed
+- [x] `REFLECTION.md` completed and committed
 
 If you run out of time: the search endpoint is optional. The other three are not.
