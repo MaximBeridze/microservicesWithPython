@@ -8,7 +8,7 @@ notification-service/
   │   ├── index.ts       ← starts HTTP server + consumer
   │   ├── consumer.ts    ← RabbitMQ consumer → SQLite
   │   ├── db.ts          ← SQLite init
-  │   └── routes.ts      ← GET /notifications, GET /notifications/:user_id
+  │   └── routes.ts      ← GET /v1/notifications, GET /v1/notifications/:user_id
   ├── package.json
   ├── tsconfig.json
   └── .env.example
@@ -55,8 +55,8 @@ The service starts on http://localhost:8004.
 
 | Method | Path | Description |
 |--------|------|-------------|
-| GET | `/notifications` | All notifications (newest first) |
-| GET | `/notifications/:user_id` | Notifications for a specific user |
+| GET | `/v1/notifications` | All notifications (newest first) |
+| GET | `/v1/notifications/:user_id` | Notifications for a specific user |
 
 ## How it works
 
