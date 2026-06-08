@@ -112,7 +112,7 @@ Check that the response includes the enriched `game` object. Then stop `game-ser
 - [x] Graceful degradation works: activity saved even when `game-service` is down
 - [x] Gateway running on port 8000, routing to all three services
 - [x] `curl http://localhost:8000/health` returns `{"status": "ok"}`
-- [ ] `REFLECTION.md` completed and committed
+- [x] `REFLECTION.md` completed and committed
 
 ---
 

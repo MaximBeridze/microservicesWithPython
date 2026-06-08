@@ -18,7 +18,9 @@ In Module 3, services called each other directly over HTTP. Now activity-service
 
 Think about what happens under load, or when notification-service is temporarily down.
 
-> *Your answer:*
+Activity-service can finish the request faster because it does not wait for notification-service. It saves the activity, publishes a message, and moves on.
+
+Notification-service gains the ability to process messages at its own pace. If it is slow or temporarily down, RabbitMQ can hold the messages until it is ready.
 
 ---
 
@@ -30,7 +32,11 @@ In Module 3 you already knew how to call another service directly over HTTP — 
 
 Think about what happens if notification-service is slow, or crashes mid-message.
 
-> *Your answer:*
+Notifications do not need to happen immediately for the activity to be valid. A direct HTTP call would make activity creation depend on notification-service being online and fast.
+
+A broker separates the two services. Activity-service only says “an activity happened,” and notification-service handles the notification later. This is different from user validation, which must happen before saving the activity.
+
+A faster process also enhances user experience, the user doesn't have to wait for the notification to process before being able to continue.
 
 ---
 
@@ -42,7 +48,9 @@ With synchronous REST, you get an immediate answer: success or failure. With asy
 
 What visibility do you lose when you go async?
 
-> *Your answer:*
+The tradeoff is less immediate feedback. With REST, activity-service knows right away if notification-service succeeded or failed. With async messaging, it only knows that it published a message.
+
+A user might only notice when a notification never appears - or if the notification is shown as a banner notification after it is processed. As a developer, I would need logs, queue monitoring, retries, or dead-letter queues to see what went wrong.
 
 ---
 

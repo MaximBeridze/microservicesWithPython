@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     activity_service_url: str = "http://localhost:8003"
 
     # Added in Module 4
-    # notification_service_url: str = "http://localhost:8004"
+    notification_service_url: str = "http://localhost:8004"
 
     # Added in Module 5
     # logging_service_url: str = "http://localhost:8006"

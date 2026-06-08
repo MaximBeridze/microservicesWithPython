@@ -89,13 +89,15 @@ curl http://localhost:8000/v1/notifications
 ## Discussion *(~15 min)*
 
 - What happens to the activity request if `notification-service` is down when the message is published? Should the activity creation fail?
+  It should wait in queue until the service is back up again as it is a secondary service where as the notification itself is created by a primary service/user action and takes priority.
 - In Module 3, you called `game-service` directly over HTTP to enrich the response. Why not do the same for notifications — why introduce a broker at all?
+  Notifications are not a core response that is needed immediately. game service was called synchronously because the activity was being enriched with the details. For notifications, the user does not need to wait for delivery before the activity can be cleared. A broker lets activity publish the eventy and continue while notification processes it separately.
 - The activity is saved and the message is sent — but you have no confirmation the notification was delivered. What visibility do you lose compared to a synchronous call?
-
+  We lose immediate visibility. With synch, we would know if the activity was accepted, with RabbitRQ, we only know that a message was sent. To fix that we would need logging or something similar.
 ---
 
 ## Minimum to submit this branch
 
-- [ ] Activity creation publishes a RabbitMQ message — visible in the management UI
-- [ ] `notification-service` registered in the gateway and reachable via port 8000
+- [x] Activity creation publishes a RabbitMQ message — visible in the management UI
+- [x] `notification-service` registered in the gateway and reachable via port 8000
 - [ ] `REFLECTION.md` completed and committed
