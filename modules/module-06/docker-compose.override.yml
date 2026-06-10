@@ -1,0 +1,7 @@
+# Module 6: Security — FastAPI native JWT auth
+# No new Docker containers this module.
+# auth-service runs locally with uvicorn, just like the other services.
+#
+# Services to keep running from previous modules:
+#   docker compose -f docker-compose.infra.yml up -d redis rabbitmq
+version: "3.9"
