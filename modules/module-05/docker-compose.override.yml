@@ -1,0 +1,6 @@
+# Module 5: Adds Redis for CQRS read projections
+# Services still run locally with uvicorn/flask + SQLite.
+#
+# Start with:
+#   docker compose -f docker-compose.infra.yml up -d redis rabbitmq
+version: "3.9"
