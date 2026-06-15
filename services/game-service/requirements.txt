@@ -7,3 +7,4 @@ python-dotenv
 aiosqlite
 pytest
 httpx2
+redis

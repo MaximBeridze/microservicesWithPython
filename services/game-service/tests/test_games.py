@@ -10,7 +10,9 @@ from app.main import app
 
 
 @pytest.fixture()
-def client() -> Generator[TestClient, None, None]:
+def client(monkeypatch: pytest.MonkeyPatch) -> Generator[TestClient, None, None]:
+    monkeypatch.setattr("app.service.set_game_summary", lambda game_id, data: None)
+
     engine = create_engine(
         "sqlite:///:memory:",
         connect_args={"check_same_thread": False},

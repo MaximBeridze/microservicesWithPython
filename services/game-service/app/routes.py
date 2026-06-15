@@ -18,6 +18,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app import service, schemas
+from app.infrastructure.cache import get_game_summary
 
 router = APIRouter(prefix="/v1/games", tags=["games"])
 
@@ -32,6 +33,13 @@ def list_games(limit: int = 20, offset: int = 0, db: Session = Depends(get_db)):
 @router.get("/search", response_model=schemas.GameList)
 def search_games(q: str, limit: int = 20, offset: int = 0, db: Session = Depends(get_db)):
     return service.find_games(db, q=q, limit=limit, offset=offset)
+
+@router.get("/{game_id}/summary")
+def get_game_summary_endpoint(game_id: str):
+    summary = get_game_summary(game_id)
+    if summary is None:
+        raise HTTPException(status_code=404, detail="Game summary not found")
+    return summary
 
 @router.get("/{game_id}", response_model=schemas.GameOut)
 def get_game(game_id: str, db: Session = Depends(get_db)):

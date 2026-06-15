@@ -18,10 +18,21 @@
 
 from sqlalchemy.orm import Session
 from app import repository
+from app.infrastructure.cache import set_game_summary
 from app.schemas import GameCreate, GameOut, GameList
 
 def add_game(db: Session, data: GameCreate) -> GameOut:
     game = repository.create_game(db, data)
+    set_game_summary(
+        game.id,
+        {
+            "id": game.id,
+            "title": game.title,
+            "genre": game.genre,
+            "platform": game.platform,
+            "cover_url": game.cover_url,
+        },
+    )
     return GameOut.model_validate(game)
 
 def fetch_game(db: Session, game_id: str) -> GameOut:

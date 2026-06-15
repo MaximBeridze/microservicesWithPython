@@ -20,7 +20,7 @@ Your module-04 work must be in place: gateway on port 8000, RabbitMQ running, ac
 Start Redis:
 
 ```bash
-docker compose -f docker-compose.infra.yml up -d redis
+docker compose -f docker-compose.override.yml up -d redis
 ```
 
 Confirm it's up:

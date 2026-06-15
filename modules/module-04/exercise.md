@@ -100,4 +100,4 @@ curl http://localhost:8000/v1/notifications
 
 - [x] Activity creation publishes a RabbitMQ message — visible in the management UI
 - [x] `notification-service` registered in the gateway and reachable via port 8000
-- [ ] `REFLECTION.md` completed and committed
+- [x] `REFLECTION.md` completed and committed
