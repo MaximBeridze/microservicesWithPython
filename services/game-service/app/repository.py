@@ -32,3 +32,12 @@ def search_games(db: Session, q: str, limit: int = 20, offset: int = 0) -> tuple
     games = db.query(Game).filter(Game.title.ilike(f"%{q}%")).offset(offset).limit(limit).all()
     total = db.query(Game).filter(Game.title.ilike(f"%{q}%")).count()
     return games, total
+
+def delete_game(db: Session, game_id: str) -> bool:
+    game = get_game(db, game_id)
+    if game is None:
+        return False
+
+    db.delete(game)
+    db.commit()
+    return True

@@ -58,3 +58,8 @@ def find_games(db: Session, q: str, limit: int = 20, offset: int = 0) -> GameLis
         limit=limit,
         offset=offset,
     )
+
+def remove_game(db: Session, game_id: str) -> None:
+    deleted = repository.delete_game(db, game_id)
+    if not deleted:
+        raise ValueError(f"Game {game_id} not found")

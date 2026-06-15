@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379"
 
     # Added in Module 6 — must match SECRET_KEY in auth-service
-    # auth_secret_key: str = "dev-secret-change-in-production"
+    auth_secret_key: str = "dev-secret-change-in-production"
 
     model_config = {"env_file": ".env"}
 

@@ -7,4 +7,6 @@ python-dotenv
 aiosqlite
 pytest
 httpx2
+httpx
 redis
+python-jose[cryptography]
