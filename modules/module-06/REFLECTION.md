@@ -18,7 +18,9 @@ The gateway now validates every JWT before forwarding a request. Individual serv
 
 Think about what happens when you need to rotate the secret key, or add a new service to the system.
 
-> *Your answer:*
+Centralising authentication at the gateway gives the system one front door. The client sends a JWT once, the gateway checks it, and invalid requests are rejected before they reach the services.
+
+If every service validated tokens separately, the same logic would be repeated everywhere. Adding a new service would mean adding the same auth code again, and rotating the secret key would be easier to mess up because every service would need to be updated correctly.
 
 ---
 
@@ -30,7 +32,9 @@ When activity-service calls user-service internally, it uses a Machine-to-Machin
 
 What would break, or what door would you accidentally leave open, if services passed user tokens between themselves?
 
-> *Your answer:*
+Activity-service should not reuse the user's token for internal calls because it is not acting as the user. It is acting as a service.
+
+If services passed user tokens around, a downstream service might accidentally get more user permissions than it needs. It also makes it harder to tell whether an action was done by the user directly or by another service. A M2M token keeps that boundary clearer.
 
 ---
 
@@ -42,7 +46,9 @@ The gateway and the auth-service share the same `SECRET_KEY` to verify tokens wi
 
 And what would the alternative look like — verifying tokens by calling auth-service on every request instead? What does that cost you?
 
-> *Your answer:*
+The risk of sharing the `SECRET_KEY` is that anyone with the key can forge valid tokens. If it leaks, an attacker could create their own admin token and bypass normal login.
+
+The benefit is speed and independence: the gateway can verify tokens locally without calling auth-service on every request. The alternative is asking auth-service to validate every request, but that adds network latency and makes auth-service a bottleneck or single point of failure.
 
 ---
 
