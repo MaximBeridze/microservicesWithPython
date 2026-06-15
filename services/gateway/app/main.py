@@ -1,5 +1,6 @@
 import httpx
 from fastapi import FastAPI, Request, Response
+from jose import JWTError, jwt
 
 from app.config import settings
 
@@ -22,6 +23,8 @@ ROUTES: dict[str, str] = {
     # Added in Module 5
     "consent": settings.logging_service_url,
     "logs": settings.logging_service_url,
+    # Added in Module 6
+    "auth": settings.auth_service_url,
 }
 
 
@@ -55,6 +58,18 @@ async def proxy(request: Request, path: str):
 
     if target_base is None:
         return Response(status_code=404, content=f"Unknown resource: {resource}")
+
+    is_public_token_request = path == "v1/auth/token"
+    if not is_public_token_request:
+        authorization = request.headers.get("authorization")
+        if not authorization or not authorization.startswith("Bearer "):
+            return Response(status_code=401, content="Missing or invalid token")
+
+        token = authorization.removeprefix("Bearer ").strip()
+        try:
+            jwt.decode(token, settings.secret_key, algorithms=["HS256"])
+        except JWTError:
+            return Response(status_code=401, content="Missing or invalid token")
 
     target_url = f"{target_base}/{path}"
 
