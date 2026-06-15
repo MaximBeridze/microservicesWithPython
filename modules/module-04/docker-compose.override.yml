@@ -1,0 +1,9 @@
+# Module 4: Messaging infrastructure only (RabbitMQ)
+# Services still run locally with uvicorn + SQLite.
+# RabbitMQ is provided by docker-compose.infra.yml.
+#
+# Start with:
+#   docker compose -f docker-compose.infra.yml up -d rabbitmq
+#
+# No service containers in this module.
+version: "3.9"
