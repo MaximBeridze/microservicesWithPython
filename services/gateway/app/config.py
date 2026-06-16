@@ -14,8 +14,8 @@ class Settings(BaseSettings):
     logging_service_url: str = "http://localhost:8006"
 
     # Added in Module 6
-    # auth_service_url: str = "http://localhost:8005"
-    # secret_key: str = "dev-secret-change-in-production"
+    auth_service_url: str = "http://localhost:8005"
+    secret_key: str = "dev-secret-change-in-production"
 
     model_config = {"env_file": ".env"}
 

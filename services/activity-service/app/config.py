@@ -10,8 +10,8 @@ class Settings(BaseSettings):
     rabbitmq_url: str = "amqp://guest:guest@localhost:5672"
 
     # Added in Module 6 — M2M auth with auth-service
-    # auth_service_url: str = "http://localhost:8005"
-    # m2m_secret: str = "m2m-secret"
+    auth_service_url: str = "http://localhost:8005"
+    m2m_secret: str = "m2m-secret"
 
     model_config = {"env_file": ".env"}
 
